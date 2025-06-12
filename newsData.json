@@ -1,0 +1,66 @@
+{
+    "baseUrl": "http://127.0.0.1:5500/",
+    "articles": [
+      {
+        "id": 1,
+        "title": "New Chart-Topping Hits This Week",
+        "excerpt": "Discover the latest songs climbing the charts and making waves in the music industry.",
+        "content": "The music industry continues to evolve with fresh sounds and innovative artists breaking through the mainstream...",
+        "author": "Music Editor",
+        "date": "2025-06-10",
+        "category": "Music",
+        "image": "assets/news.jpg"
+      },
+      {
+        "id": 2,
+        "title": "SL Hit Radio Reaches 100K Listeners",
+        "excerpt": "We're excited to announce that we've reached a major milestone in our broadcasting journey.",
+        "content": "We're incredibly excited to share this milestone with our amazing community...",
+        "author": "Station Manager",
+        "date": "2025-06-08",
+        "category": "Station News",
+        "image": "assets/news.jpg"
+      },
+      {
+        "id": 3,
+        "title": "Upcoming Live Concert Coverage",
+        "excerpt": "Don't miss our exclusive live coverage of the biggest music events happening this month.",
+        "content": "Music lovers, get ready for an unprecedented live experience! SL Hit Radio is proud to announce our exclusive coverage...",
+        "author": "Events Team",
+        "date": "2025-06-05",
+        "category": "Events",
+        "image": "assets/news.jpg"
+      },
+      {
+        "id": 4,
+        "title": "Artist Spotlight: Rising Stars of 2025",
+        "excerpt": "Meet the emerging artists who are set to dominate the music scene this year.",
+        "content": "2025 is shaping up to be an incredible year for new talent in the music industry...",
+        "author": "Music Curator",
+        "date": "2025-06-03",
+        "category": "Artist Spotlight",
+        "image": "assets/news.jpg"
+      },
+      {
+        "id": 5,
+        "title": "Behind the Scenes: A Day at SL Hit Radio",
+        "excerpt": "Ever wondered what goes on behind the microphone? Take a look inside our radio station.",
+        "content": "Have you ever wondered what happens behind the scenes at your favorite radio station? Today, we're pulling back the curtain...",
+        "author": "Behind the Scenes Team",
+        "date": "2025-06-01",
+        "category": "Behind the Scenes",
+        "image": "assets/news.jpg"
+      },
+      {
+        "id": 6,
+        "title": "Music Technology: The Future of Radio Broadcasting",
+        "excerpt": "Exploring how technology is revolutionizing the way we create and consume radio content.",
+        "content": "The radio industry is experiencing a technological revolution that's changing how we create, distribute, and consume audio content...",
+        "author": "Tech Team",
+        "date": "2025-05-28",
+        "category": "Technology",
+        "image": "assets/news.jpg"
+      }
+    ]
+  }
+  

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SL Hit Radio News Article">
+    <meta name="keywords" content="radio, music, news, updates, entertainment">
+    <title>SL Hit Radio - News Article</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glow-hover {
+            transition: all 0.3s ease;
+        }
+        .glow-hover:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
+        }
+        .back-button {
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-white text-xl font-bold glow-hover">
+                        <i class="fas fa-radio mr-2"></i>SL Hit Radio
+                    </a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="index.html#programs" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium">Programs</a>
+                        <a href="index.html#schedule" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium">Schedule</a>
+                        <a href="news.html" class="text-white bg-white/20 px-3 py-2 rounded-md text-sm font-medium">News</a>
+                        <a href="index.html#about" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white glow-hover">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="index.html#programs" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Programs</a>
+                <a href="index.html#schedule" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Schedule</a>
+                <a href="news.html" class="text-white bg-white/20 block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="index.html#about" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <div class="pt-24 pb-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Back Button -->
+            <button onclick="history.back()" class="back-button glass rounded-lg px-4 py-2 text-white mb-8 inline-flex items-center space-x-2">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to News</span>
+            </button>
+            
+            <!-- Article Container -->
+            <article id="article-container" class="glass rounded-2xl overflow-hidden">
+                <!-- Article content will be loaded here -->
+            </article>
+            
+            <!-- Related Articles -->
+            <div class="mt-12">
+                <h3 class="text-white text-2xl font-bold mb-6">Related Articles</h3>
+                <div id="related-articles" class="grid md:grid-cols-2 gap-6">
+                    <!-- Related articles will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-nav mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="social-icon text-white/80 hover:text-white text-2xl">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white/80 hover:text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white/80 hover:text-white text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white/80 hover:text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                
+                <div class="text-white/60 text-sm">
+                    <p>&copy; 2025 SL Hit Radio. All rights reserved.</p>
+                    <p class="mt-2">Broadcasting the best hits 24/7</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Get article ID from URL
+        function getArticleId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            return id ? parseInt(id) : null;
+        }
+
+        // Load article data
+        async function loadArticle() {
+            const articleId = getArticleId();
+            if (!articleId) {
+                displayErrorMessage();
+                return;
+            }
+
+            try {
+                const response = await fetch('newsData.json');
+                const newsData = await response.json();
+                const article = newsData.articles.find(a => a.id === articleId);
+                
+                if (article) {
+                    displayArticle(article);
+                    displayRelatedArticles(newsData.articles, articleId);
+                } else {
+                    displayErrorMessage();
+                }
+            } catch (error) {
+                console.error('Error loading article:', error);
+                displayFallbackArticle(articleId);
+            }
+        }
+
+        function displayArticle(article) {
+            const container = document.getElementById('article-container');
+            document.title = `${article.title} - SL Hit Radio`;
+            
+            container.innerHTML = `
+                <div class="relative">
+                    <img src="${article.image}" alt="${article.title}" class="w-full h-64 md:h-96 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                        <div class="flex items-center text-white/80 text-sm mb-4">
+                            <span class="bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-xs font-medium mr-4">${article.category}</span>
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>${article.date}</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-user mr-2"></i>
+                            <span>${article.author}</span>
+                        </div>
+                        <h1 class="text-white text-3xl md:text-4xl font-bold">${article.title}</h1>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="prose prose-lg max-w-none text-white/90 leading-relaxed">
+                        ${article.content || article.excerpt}
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/20">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-medium">${article.author}</p>
+                                    <p class="text-white/60 text-sm">News Reporter</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <span class="text-white/60 text-sm">Share:</span>
+                                <a href="#" class="social-icon text-white/80 hover:text-white">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon text-white/80 hover:text-white">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon text-white/80 hover:text-white">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayRelatedArticles(articles, currentId) {
+            const relatedContainer = document.getElementById('related-articles');
+            const relatedArticles = articles.filter(a => a.id !== currentId).slice(0, 2);
+            
+            relatedContainer.innerHTML = relatedArticles.map(article => `
+                <div class="glass rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all">
+                    <img src="${article.image}" alt="${article.title}" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <div class="flex items-center text-white/60 text-xs mb-2">
+                            <span class="bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-1 rounded-full text-xs font-medium mr-2">${article.category}</span>
+                            <span>${article.date}</span>
+                        </div>
+                        <h4 class="text-white font-bold mb-2">${article.title}</h4>
+                        <p class="text-white/80 text-sm mb-3">${article.excerpt.substring(0, 100)}...</p>
+                        <a href="news-article.html?id=${article.id}" class="text-purple-400 hover:text-purple-300 text-sm font-medium">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayErrorMessage() {
+            const container = document.getElementById('article-container');
+            container.innerHTML = `
+                <div class="p-8 text-center">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 text-4xl mb-4"></i>
+                    <h2 class="text-white text-2xl font-bold mb-4">Article Not Found</h2>
+                    <p class="text-white/80 mb-6">Sorry, the article you're looking for doesn't exist or has been removed.</p>
+                    <a href="news.html" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition-all">
+                        Back to News
+                    </a>
+                </div>
+            `;
+        }
+
+        function displayFallbackArticle(articleId) {
+            const fallbackArticles = {
+                1: {
+                    title: "New Chart-Topping Hits This Week",
+                    content: "The music industry continues to evolve with fresh sounds and innovative artists breaking through the mainstream. This week, we're seeing an incredible mix of genres dominating the charts, from pop sensations to indie darlings making their mark. Our team has been tracking the latest releases and streaming numbers to bring you the most comprehensive overview of what's trending right now. These artists are not just creating music; they're crafting experiences that resonate with audiences worldwide.",
+                    author: "Music Editor",
+                    date: "June 10, 2025",
+                    category: "Music",
+                    image: "https://via.placeholder.com/800x400/667eea/ffffff?text=Music+News"
+                },
+                2: {
+                    title: "SL Hit Radio Reaches 100K Listeners",
+                    content: "We're incredibly excited to share this milestone with our amazing community. Reaching 100,000 listeners is more than just a number – it represents the trust and loyalty of music lovers who choose SL Hit Radio as their daily soundtrack. From our humble beginnings as a small local station to becoming a voice that reaches across the nation, this journey has been extraordinary. Our dedicated team of DJs, producers, and music curators work around the clock to bring you the best mix of current hits, classic favorites, and emerging artists.",
+                    author: "Station Manager",
+                    date: "June 8, 2025",
+                    category: "Station News",
+                    image: "https://via.placeholder.com/800x400/764ba2/ffffff?text=Station+Update"
+                },
+                3: {
+                    title: "Upcoming Live Concert Coverage",
+                    content: "Music lovers, get ready for an unprecedented live experience! SL Hit Radio is proud to announce our exclusive coverage of the biggest concerts and music festivals happening this month. Our team will be on-site, bringing you behind-the-scenes access, artist interviews, and live performances that you won't hear anywhere else. From intimate acoustic sessions to massive stadium shows, we're committed to bringing the concert experience directly to your speakers. Stay tuned for special broadcasts featuring your favorite artists.",
+                    author: "Events Team",
+                    date: "June 5, 2025",
+                    category: "Events",
+                    image: "https://via.placeholder.com/800x400/f093fb/ffffff?text=Live+Events"
+                }
+            };
+            
+            const article = fallbackArticles[articleId];
+            if (article) {
+                displayArticle(article);
+            } else {
+                displayErrorMessage();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArticle();
+        });
+    </script>
+</body>
+</html>
