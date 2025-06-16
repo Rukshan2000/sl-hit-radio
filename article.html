@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SL Hit Radio News Article">
+    <meta name="keywords" content="radio, music, news, updates, entertainment">
+    <title>SL Hit Radio - News Article</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .rotating {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        .fade-in-delay-1 { animation: fadeIn 1s ease-out 0.2s both; }
+        .fade-in-delay-2 { animation: fadeIn 1s ease-out 0.4s both; }
+        .fade-in-delay-3 { animation: fadeIn 1s ease-out 0.6s both; }
+        .fade-in-delay-4 { animation: fadeIn 1s ease-out 0.8s both; }
+        .fade-in-delay-5 { animation: fadeIn 1s ease-out 1.0s both; }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .glow-hover {
+            transition: all 0.3s ease;
+        }
+        .glow-hover:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .share-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+        
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-white text-xl font-bold glow-hover slide-in-left">
+                        <i class="fas fa-radio mr-2 rotating"></i>SL Hit Radio
+                    </a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-1">Home</a>
+                        <a href="index.html#programs" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-2">Programs</a>
+                        <a href="index.html#schedule" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-3">Schedule</a>
+                        <a href="news.html" class="text-white bg-white/20 px-3 py-2 rounded-md text-sm font-medium pulse-glow fade-in-delay-4">News</a>
+                        <a href="index.html#about" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-5">About</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white glow-hover slide-in-right">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="index.html#programs" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Programs</a>
+                <a href="index.html#schedule" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Schedule</a>
+                <a href="news.html" class="text-white bg-white/20 block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="index.html#about" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="pt-24 pb-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Back Button -->
+            <div class="mb-8">
+                <a href="news.html" class="back-btn">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to News
+                </a>
+            </div>
+            
+            <!-- Article -->
+            <article class="glass rounded-2xl overflow-hidden">
+                <!-- Article Image -->
+                <div id="articleImageContainer" class="overflow-hidden">
+                    <!-- Image will be loaded here -->
+                </div>
+                
+                <!-- Article Content -->
+                <div class="p-8">
+                    <!-- Article Meta -->
+                    <div class="flex flex-wrap items-center text-white/60 text-sm mb-6">
+                        <div class="flex items-center mr-6 mb-2">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span id="articleDate">Loading...</span>
+                        </div>
+                        <div class="flex items-center mr-6 mb-2">
+                            <i class="fas fa-user mr-2"></i>
+                            <span id="articleAuthor">Loading...</span>
+                        </div>
+                        <div class="mb-2">
+                            <span id="articleCategory" class="bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-xs font-medium text-white">
+                                Loading...
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Article Title -->
+                    <h1 id="articleTitle" class="text-white text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Loading Article...
+                    </h1>
+                    
+                    <!-- Article Content -->
+                    <div id="articleContent" class="article-content text-white/90 mb-8">
+                        <div class="text-center py-8">
+                            <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+                            <p>Loading article content...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Share Buttons -->
+                    <div class="border-t border-white/20 pt-6">
+                        <h3 class="text-white text-lg font-bold mb-4">Share this article</h3>
+                        <div class="flex items-center">
+                            <button onclick="shareOnFacebook()" class="share-btn" title="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="shareOnTwitter()" class="share-btn" title="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="shareOnWhatsApp()" class="share-btn" title="Share on WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                            <button onclick="copyLink()" class="share-btn" title="Copy Link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Related Articles Section -->
+            <section class="mt-12">
+                <h2 class="text-white text-3xl font-bold mb-8 text-center">
+                    <span class="text-gradient">More</span> News
+                </h2>
+                <div id="relatedArticles" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Related articles will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-nav mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="text-white/80 hover:text-white text-2xl transition-all hover:scale-110">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-white/80 hover:text-white text-2xl transition-all hover:scale-110">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-white/80 hover:text-white text-2xl transition-all hover:scale-110">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-white/80 hover:text-white text-2xl transition-all hover:scale-110">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                
+                <div class="text-white/60 text-sm">
+                    <p>&copy; 2025 SL Hit Radio. All rights reserved.</p>
+                    <p class="mt-2">Broadcasting the best hits 24/7</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+        import { getDatabase, ref, get, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoRO0KGQ9WEPkqqQ21HKEmNbySxIqssu4",
+            authDomain: "sl-hit-radio-6b2c4.firebaseapp.com",
+            databaseURL: "https://sl-hit-radio-6b2c4-default-rtdb.firebaseio.com/",
+            projectId: "sl-hit-radio-6b2c4",
+            storageBucket: "sl-hit-radio-6b2c4.firebasestorage.app",
+            messagingSenderId: "946618237517",
+            appId: "1:946618237517:web:d4691f14f70fc4d817d204",
+            measurementId: "G-1LG78B19Y9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Get article ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        // DOM elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Mobile menu toggle
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Load article data
+        async function loadArticle() {
+            if (!articleId) {
+                showError('Article not found');
+                return;
+            }
+
+            try {
+                const articleRef = ref(database, `news/${articleId}`);
+                const snapshot = await get(articleRef);
+                
+                if (!snapshot.exists()) {
+                    showError('Article not found');
+                    return;
+                }
+
+                const article = snapshot.val();
+                displayArticle(article);
+                loadRelatedArticles(articleId);
+                
+            } catch (error) {
+                console.error('Error loading article:', error);
+                showError('Error loading article');
+            }
+        }
+
+        // Display article
+        function displayArticle(article) {
+            const date = new Date(article.timestamp).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            // Update meta information
+            document.getElementById('articleDate').textContent = date;
+            document.getElementById('articleAuthor').textContent = article.author;
+            document.getElementById('articleCategory').textContent = article.category;
+            
+            // Update title
+            document.getElementById('articleTitle').textContent = article.title;
+            document.title = `${article.title} - SL Hit Radio News`;
+            
+            // Update content with proper formatting
+            const content = article.content.split('\n').map(paragraph => 
+                paragraph.trim() ? `<p>${paragraph.trim()}</p>` : ''
+            ).join('');
+            document.getElementById('articleContent').innerHTML = content;
+            
+            // Update image
+            const imageContainer = document.getElementById('articleImageContainer');
+            if (article.imageUrl) {
+                imageContainer.innerHTML = `
+                    <img src="${article.imageUrl}" alt="${article.title}" class="w-full h-64 md:h-96 object-cover">
+                `;
+            } else {
+                imageContainer.innerHTML = `
+                    <div class="w-full h-64 md:h-96 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-newspaper text-white text-6xl mb-4"></i>
+                            <h2 class="text-white text-2xl font-bold">SL Hit Radio News</h2>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Load related articles
+        function loadRelatedArticles(currentArticleId) {
+            const newsRef = ref(database, 'news');
+            const recentNewsQuery = query(newsRef, limitToLast(6));
+            
+            onValue(recentNewsQuery, (snapshot) => {
+                const relatedContainer = document.getElementById('relatedArticles');
+                relatedContainer.innerHTML = '';
+                
+                if (!snapshot.exists()) {
+                    relatedContainer.innerHTML = '<p class="text-white/80 text-center col-span-full">No related articles found.</p>';
+                    return;
+                }
+
+                const newsData = snapshot.val();
+                const newsArray = Object.entries(newsData)
+                    .map(([key, value]) => ({ id: key, ...value }))
+                    .filter(article => article.id !== currentArticleId)
+                    .sort((a, b) => b.timestamp - a.timestamp)
+                    .slice(0, 3);
+
+                newsArray.forEach(article => {
+                    const articleElement = createRelatedArticleElement(article);
+                    relatedContainer.appendChild(articleElement);
+                });
+            });
+        }
+
+        // Create related article element
+        function createRelatedArticleElement(article) {
+            const articleDiv = document.createElement('div');
+            articleDiv.className = 'glass rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300';
+            
+            const date = new Date(article.timestamp).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            const imageUrl = article.imageUrl || 'https://via.placeholder.com/300x200/667eea/ffffff?text=SL+Hit+Radio';
+
+            articleDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${article.title}" class="w-full h-32 object-cover">
+                <div class="p-4">
+                    <div class="text-white/60 text-xs mb-2">${date} • ${article.category}</div>
+                    <h3 class="text-white font-bold text-sm mb-2 line-clamp-2">${article.title}</h3>
+                    <p class="text-white/80 text-xs mb-3 line-clamp-2">${article.content.substring(0, 80)}...</p>
+                    <a href="article.html?id=${article.id}" class="text-purple-400 hover:text-purple-300 text-xs font-medium">
+                        Read More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            `;
+
+            return articleDiv;
+        }
+
+        // Show error message
+        function showError(message) {
+            document.getElementById('articleTitle').textContent = 'Article Not Found';
+            document.getElementById('articleContent').innerHTML = `
+                <div class="text-center py-12">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-6xl mb-4"></i>
+                    <h3 class="text-white text-2xl font-bold mb-4">${message}</h3>
+                    <p class="text-white/80 mb-6">The article you're looking for could not be found.</p>
+                    <a href="news.html" class="back-btn">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to News
+                    </a>
+                </div>
+            `;
+        }
+
+        // Share functions
+        window.shareOnFacebook = function() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        };
+
+        window.shareOnTwitter = function() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank');
+        };
+
+        window.shareOnWhatsApp = function() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+            window.open(`https://wa.me/?text=${title} ${url}`, '_blank');
+        };
+
+        window.copyLink = function() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArticle();
+        });
+    </script>
+</body>
+</html>

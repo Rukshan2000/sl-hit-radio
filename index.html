@@ -299,6 +299,126 @@
         </div>
     </nav>
 
+    <!-- Custom Playlist Player Section -->
+    <section id="custom-player" class="py-20 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white text-4xl font-bold mb-4">
+                    <span class="text-gradient">Custom</span> <span>Playlist Player</span>
+                </h2>
+                <p class="text-white/80 text-lg">
+                    Listen to curated playlists from our radio station
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Playlist Selector -->
+                <div class="lg:col-span-1">
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-white text-xl font-bold mb-4">
+                            <i class="fas fa-list-music mr-2"></i>Available Playlists
+                        </h3>
+                        <div id="playlistSelector" class="space-y-3">
+                            <div class="loading text-center py-4">
+                                <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                <p class="text-white/60">Loading playlists...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Player -->
+                <div class="lg:col-span-2">
+                    <div class="glass rounded-2xl p-8">
+                        <!-- Player Header -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-white text-2xl font-bold" id="currentPlaylistName">
+                                    Select a Playlist
+                                </h3>
+                                <p class="text-white/60" id="currentPlaylistInfo">
+                                    Choose from our curated playlists
+                                </p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button id="shufflePlaylistBtn" class="glass w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all" title="Shuffle">
+                                    <i class="fas fa-random"></i>
+                                </button>
+                                <button id="loopPlaylistBtn" class="glass w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all" title="Loop">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Now Playing Card -->
+                        <div class="glass rounded-xl p-6 mb-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                                    <i id="customPlayerIcon" class="fas fa-music text-white text-2xl"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 id="customCurrentSong" class="text-white font-bold text-lg truncate">
+                                        No song selected
+                                    </h4>
+                                    <p id="customCurrentArtist" class="text-white/60 truncate">
+                                        Select a playlist to start
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <p id="customCurrentTime" class="text-white/80 text-sm font-mono">0:00</p>
+                                    <p id="customTotalTime" class="text-white/60 text-xs font-mono">0:00</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Progress Bar -->
+                            <div class="mt-4">
+                                <div class="relative bg-white/10 h-2 rounded-full overflow-hidden">
+                                    <div id="customProgressBar" class="bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Player Controls -->
+                        <div class="flex items-center justify-center space-x-4 mb-6">
+                            <button id="customPrevBtn" class="glass w-12 h-12 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button id="customPlayPauseBtn" class="bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl pulse-glow">
+                                <i id="customPlayPauseIcon" class="fas fa-play ml-1"></i>
+                            </button>
+                            <button id="customNextBtn" class="glass w-12 h-12 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Volume Control -->
+                        <div class="flex items-center space-x-3 mb-6">
+                            <i class="fas fa-volume-down text-white/60"></i>
+                            <input type="range" id="customVolumeSlider" min="0" max="1" step="0.1" value="0.7" 
+                                   class="flex-1 h-2 bg-white/20 rounded-lg appearance-none slider">
+                            <i class="fas fa-volume-up text-white/60"></i>
+                        </div>
+                        
+                        <!-- Playlist Queue -->
+                        <div class="border-t border-white/10 pt-6">
+                            <h4 class="text-white font-bold mb-4 flex items-center">
+                                <i class="fas fa-list mr-2"></i>
+                                Queue
+                                <span id="queueCount" class="ml-2 bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full text-xs">0</span>
+                            </h4>
+                            <div id="customPlaylistQueue" class="space-y-2 max-h-60 overflow-y-auto">
+                                <div class="text-center py-8 text-white/60">
+                                    <i class="fas fa-music text-3xl mb-2"></i>
+                                    <p>No playlist selected</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Enhanced Hero Section -->
     <main id="home" class="relative min-h-screen flex items-center justify-center pt-16 px-4 overflow-hidden">
         <!-- Animated Background Elements -->
@@ -918,6 +1038,260 @@
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, get, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoRO0KGQ9WEPkqqQ21HKEmNbySxIqssu4",
+            authDomain: "sl-hit-radio-6b2c4.firebaseapp.com",
+            databaseURL: "https://sl-hit-radio-6b2c4-default-rtdb.firebaseio.com/",
+            projectId: "sl-hit-radio-6b2c4",
+            storageBucket: "sl-hit-radio-6b2c4.firebasestorage.app",
+            messagingSenderId: "946618237517",
+            appId: "1:946618237517:web:d4691f14f70fc4d817d204",
+            measurementId: "G-1LG78B19Y9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Load homepage content from Firebase
+        function loadHomepageContent() {
+            const homepageRef = ref(database, 'homepage');
+            
+            onValue(homepageRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    updateHomepageContent(data);
+                }
+            });
+        }
+
+        // Update homepage content in the DOM
+        function updateHomepageContent(data) {
+            // Update site title and metadata
+            if (data.siteInfo) {
+                if (data.siteInfo.title) {
+                    document.title = data.siteInfo.title;
+                    // Update navigation title
+                    const navTitle = document.querySelector('nav h1');
+                    if (navTitle) navTitle.innerHTML = `<i class="fas fa-radio mr-2 rotating"></i>${data.siteInfo.name || 'SL Hit Radio'}`;
+                }
+                if (data.siteInfo.description) {
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) metaDesc.setAttribute('content', data.siteInfo.description);
+                }
+            }
+
+            // Update hero section
+            if (data.hero) {
+                const heroTitle = document.querySelector('.hero-title .text-gradient');
+                const heroSubtitle = document.querySelector('.hero-title + div .text-glow');
+                const heroTagline = document.querySelector('.hero-title + div p:first-of-type');
+                const heroDescription = document.querySelector('.hero-title + div p:last-of-type');
+                
+                if (heroTitle && data.hero.title) heroTitle.textContent = data.hero.title;
+                if (heroSubtitle && data.hero.subtitle) heroSubtitle.textContent = data.hero.subtitle;
+                if (heroTagline && data.hero.tagline) heroTagline.textContent = data.hero.tagline;
+                if (heroDescription && data.hero.description) heroDescription.textContent = data.hero.description;
+            }
+
+            // Update stats section
+            if (data.stats) {
+                const statElements = document.querySelectorAll('.wave-animation');
+                const statLabels = ['listeners', 'broadcasting', 'countries', 'songs'];
+                
+                statElements.forEach((element, index) => {
+                    const statKey = statLabels[index];
+                    if (data.stats[statKey]) {
+                        element.textContent = data.stats[statKey];
+                    }
+                });
+            }
+
+            // Update programs section
+            if (data.programs) {
+                updateProgramsSection(data.programs);
+            }
+
+            // Update schedule section
+            if (data.schedule) {
+                updateScheduleSection(data.schedule);
+            }
+
+            // Update top songs section
+            if (data.topSongs) {
+                updateTopSongsSection(data.topSongs);
+            }
+
+            // Update about section
+            if (data.about) {
+                updateAboutSection(data.about);
+            }
+
+            // Update contact section
+            if (data.contact) {
+                updateContactSection(data.contact);
+            }
+        }
+
+        // Update programs section
+        function updateProgramsSection(programs) {
+            const programsContainer = document.querySelector('#programs .grid');
+            if (!programsContainer || !programs.list) return;
+
+            programsContainer.innerHTML = '';
+            
+            programs.list.forEach(program => {
+                const programElement = document.createElement('div');
+                programElement.className = 'glass rounded-2xl p-6 card-hover scroll-fade';
+                programElement.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r ${program.iconGradient || 'from-orange-400 to-pink-500'} w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas ${program.icon || 'fa-music'} text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg">${program.name}</h3>
+                            <p class="text-white/60 text-sm">${program.time}</p>
+                        </div>
+                    </div>
+                    <p class="text-white/80 mb-4">${program.description}</p>
+                    <div class="flex items-center">
+                        <img src="${program.djImage || 'https://via.placeholder.com/40x40/667eea/ffffff?text=DJ'}" alt="${program.dj}" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="text-white font-medium text-sm">${program.dj}</p>
+                            <p class="text-white/60 text-xs">${program.djTitle}</p>
+                        </div>
+                    </div>
+                `;
+                programsContainer.appendChild(programElement);
+            });
+        }
+
+        // Update schedule section
+        function updateScheduleSection(schedule) {
+            const scheduleContainer = document.querySelector('#schedule .grid > .glass .grid');
+            if (!scheduleContainer || !schedule.timeSlots) return;
+
+            // Keep the header row and clear the rest
+            const headerRow = scheduleContainer.firstElementChild;
+            scheduleContainer.innerHTML = '';
+            scheduleContainer.appendChild(headerRow);
+
+            schedule.timeSlots.forEach(slot => {
+                const slotElement = document.createElement('div');
+                slotElement.className = 'grid grid-cols-3 gap-4 p-4 hover:bg-white/5 rounded-lg transition-colors';
+                slotElement.innerHTML = `
+                    <div class="text-white/80">${slot.time}</div>
+                    <div class="text-white">${slot.weekdays}</div>
+                    <div class="text-white">${slot.weekends}</div>
+                `;
+                scheduleContainer.appendChild(slotElement);
+            });
+        }
+
+        // Update top songs section
+        function updateTopSongsSection(topSongs) {
+            const songsContainer = document.querySelector('#schedule ~ section .space-y-4');
+            if (!songsContainer || !topSongs.list) return;
+
+            songsContainer.innerHTML = '';
+
+            topSongs.list.forEach((song, index) => {
+                const songElement = document.createElement('div');
+                songElement.className = 'flex items-center p-4 hover:bg-white/5 rounded-lg transition-colors';
+                
+                let trendIcon = 'fas fa-equals';
+                let trendColor = 'text-white/40';
+                if (song.trend === 'up') {
+                    trendIcon = 'fas fa-arrow-up';
+                    trendColor = 'text-green-400';
+                } else if (song.trend === 'down') {
+                    trendIcon = 'fas fa-arrow-down';
+                    trendColor = 'text-red-400';
+                }
+
+                songElement.innerHTML = `
+                    <div class="text-2xl font-bold text-white/60 w-8">${index + 1}</div>
+                    <div class="flex-1 ml-4">
+                        <p class="text-white font-medium">${song.title}</p>
+                        <p class="text-white/60 text-sm">${song.artist}</p>
+                    </div>
+                    <div class="${trendColor}">
+                        <i class="${trendIcon}"></i>
+                    </div>
+                `;
+                songsContainer.appendChild(songElement);
+            });
+        }
+
+        // Update about section
+        function updateAboutSection(about) {
+            if (about.title) {
+                const titleElement = document.querySelector('#about h2');
+                if (titleElement) titleElement.textContent = about.title;
+            }
+
+            if (about.description) {
+                const descElement = document.querySelector('#about .text-center p');
+                if (descElement) descElement.textContent = about.description;
+            }
+
+            if (about.story) {
+                const storyContainer = document.querySelector('#about .space-y-4');
+                if (storyContainer && about.story.paragraphs) {
+                    storyContainer.innerHTML = '';
+                    about.story.paragraphs.forEach(paragraph => {
+                        const p = document.createElement('p');
+                        p.textContent = paragraph;
+                        storyContainer.appendChild(p);
+                    });
+                }
+            }
+
+            if (about.stats) {
+                const statBoxes = document.querySelectorAll('#about .grid-cols-2 .glass');
+                const statKeys = ['broadcasting', 'listeners', 'years', 'songs'];
+                
+                statBoxes.forEach((box, index) => {
+                    const statKey = statKeys[index];
+                    if (about.stats[statKey]) {
+                        const valueElement = box.querySelector('.text-3xl');
+                        const labelElement = box.querySelector('.text-white\\/80');
+                        if (valueElement) valueElement.textContent = about.stats[statKey].value;
+                        if (labelElement) labelElement.textContent = about.stats[statKey].label;
+                    }
+                });
+            }
+        }
+
+        // Update contact section
+        function updateContactSection(contact) {
+            if (contact.info) {
+                const contactElements = document.querySelectorAll('.space-y-4 .flex.items-center span');
+                const contactKeys = ['phone', 'email', 'address', 'hours'];
+                
+                contactElements.forEach((element, index) => {
+                    const contactKey = contactKeys[index];
+                    if (contact.info[contactKey]) {
+                        element.textContent = contact.info[contactKey];
+                    }
+                });
+            }
+        }
+
+        // Initialize content loading when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHomepageContent();
+        });
+
+        // Make functions available globally for script.js
+        window.loadHomepageContent = loadHomepageContent;
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

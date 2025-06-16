@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Firebase Connection</title>
+</head>
+<body>
+    <h1>Testing Firebase Connection</h1>
+    <button id="testBtn">Test Firebase Connection</button>
+    <div id="result"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoRO0KGQ9WEPkqqQ21HKEmNbySxIqssu4",
+            authDomain: "sl-hit-radio-6b2c4.firebaseapp.com",
+            databaseURL: "https://sl-hit-radio-6b2c4-default-rtdb.firebaseio.com/",
+            projectId: "sl-hit-radio-6b2c4",
+            storageBucket: "sl-hit-radio-6b2c4.firebasestorage.app",
+            messagingSenderId: "946618237517",
+            appId: "1:946618237517:web:d4691f14f70fc4d817d204",
+            measurementId: "G-1LG78B19Y9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            try {
+                // Test writing to database
+                const testRef = ref(database, 'test');
+                await set(testRef, { message: 'Hello Firebase!', timestamp: Date.now() });
+                
+                // Test reading from database
+                const snapshot = await get(testRef);
+                const data = snapshot.val();
+                
+                document.getElementById('result').innerHTML = `
+                    <h2>Success!</h2>
+                    <p>Data written and read successfully:</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h2>Error!</h2>
+                    <p>${error.message}</p>
+                `;
+                console.error('Firebase error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

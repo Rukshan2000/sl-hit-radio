@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SL Hit Radio Admin - News Management">
+    <meta name="keywords" content="admin, news, management">
+    <title>SL Hit Radio - Admin Panel</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .rotating {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        .fade-in-delay-1 { animation: fadeIn 1s ease-out 0.2s both; }
+        .fade-in-delay-2 { animation: fadeIn 1s ease-out 0.4s both; }
+        .fade-in-delay-3 { animation: fadeIn 1s ease-out 0.6s both; }
+        .fade-in-delay-4 { animation: fadeIn 1s ease-out 0.8s both; }
+        .fade-in-delay-5 { animation: fadeIn 1s ease-out 1.0s both; }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .glow-hover {
+            transition: all 0.3s ease;
+        }
+        .glow-hover:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-group select option {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .btn-danger:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(245, 101, 101, 0.3);
+        }
+        
+        .success-message {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .error-message {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .admin-table th {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .admin-table td {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .admin-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-white text-xl font-bold glow-hover slide-in-left">
+                        <i class="fas fa-radio mr-2 rotating"></i>SL Hit Radio
+                    </a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-1">Home</a>
+                        <a href="news.html" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-2">News</a>
+                        <a href="#" class="text-white bg-white/20 px-3 py-2 rounded-md text-sm font-medium pulse-glow fade-in-delay-3">Admin</a>
+                        <button id="logoutBtn" class="text-white glow-hover px-3 py-2 rounded-md text-sm font-medium fade-in-delay-4 hidden">
+                            <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white glow-hover slide-in-right">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="news.html" class="text-white glow-hover block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="#" class="text-white bg-white/20 block px-3 py-2 rounded-md text-base font-medium">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Screen -->
+    <section id="loginScreen" class="screen active pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    <span class="text-gradient">Admin</span> <span>Panel</span>
+                </h1>
+                <p class="text-white/80 text-xl">
+                    Secure access to content management
+                </p>
+            </div>
+            
+            <div class="glass rounded-2xl login-form">
+                <h2 class="text-white text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-lock mr-2"></i>Admin Login
+                </h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">
+                            <i class="fas fa-user mr-2"></i>Username
+                        </label>
+                        <input type="text" id="adminUsername" placeholder="Enter admin username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-key mr-2"></i>Password
+                        </label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary w-full" id="loginBtn">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        </button>
+                        <div id="loginMessage"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="adminDashboard" class="screen pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    <span class="text-gradient">Content</span> <span>Management</span>
+                </h1>
+                <p class="text-white/80 text-xl">
+                    Manage your radio station's content
+                </p>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="text-center mb-8">
+                <button id="addNewsTabBtn" class="nav-btn active">
+                    <i class="fas fa-plus mr-2"></i>Add News
+                </button>
+                <button id="manageNewsTabBtn" class="nav-btn">
+                    <i class="fas fa-list mr-2"></i>Manage News
+                </button>
+                <button id="homepageTabBtn" class="nav-btn">
+                    <i class="fas fa-home mr-2"></i>Homepage Content
+                </button>
+            </div>
+
+            <!-- Add News Tab -->
+            <div id="addNewsTab" class="tab-content active">
+                <div class="max-w-2xl mx-auto">
+                    <div class="glass rounded-2xl p-8">
+                        <h2 class="text-white text-3xl font-bold mb-8 text-center">
+                            <i class="fas fa-plus mr-3"></i>Add News Article
+                        </h2>
+                        <form id="newsForm">
+                            <div class="form-group">
+                                <label for="newsTitle">
+                                    <i class="fas fa-heading mr-2"></i>Title
+                                </label>
+                                <input type="text" id="newsTitle" placeholder="Enter article title" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newsExcerpt">
+                                    <i class="fas fa-align-left mr-2"></i>Excerpt
+                                </label>
+                                <textarea id="newsExcerpt" rows="3" placeholder="Enter a brief summary of the article" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newsContent">
+                                    <i class="fas fa-file-alt mr-2"></i>Content
+                                </label>
+                                <textarea id="newsContent" rows="8" placeholder="Enter the full article content" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newsCategory">
+                                    <i class="fas fa-tag mr-2"></i>Category
+                                </label>
+                                <select id="newsCategory" required>
+                                    <option value="">Select a category</option>
+                                    <option value="music">Music</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="events">Events</option>
+                                    <option value="general">General</option>
+                                </select>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn-primary" id="submitBtn">
+                                    <i class="fas fa-save mr-2"></i>Publish Article
+                                </button>
+                                <div id="formMessage"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage News Tab -->
+            <div id="manageNewsTab" class="tab-content">
+                <div class="glass rounded-2xl p-8">
+                    <h2 class="text-white text-3xl font-bold mb-8 text-center">
+                        <i class="fas fa-list mr-3"></i>Manage News Articles
+                    </h2>
+                    
+                    <div id="newsTableContainer">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+                            <p>Loading news articles...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Homepage Content Tab -->
+            <div id="homepageTab" class="tab-content">
+                <div class="glass rounded-2xl p-8">
+                    <h2 class="text-white text-3xl font-bold mb-8 text-center">
+                        <i class="fas fa-home mr-3"></i>Homepage Content Management
+                    </h2>
+                    
+                    <div class="grid gap-8">
+                        <!-- Site Information -->
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-white text-xl font-bold mb-4">
+                                <i class="fas fa-info-circle mr-2"></i>Site Information
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="siteName">Site Name</label>
+                                    <input type="text" id="siteName" placeholder="SL Hit Radio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="siteTitle">Page Title</label>
+                                    <input type="text" id="siteTitle" placeholder="SL Hit Radio - Live Music Streaming 24/7">
+                                </div>
+                                <div class="form-group md:col-span-2">
+                                    <label for="siteDescription">Site Description</label>
+                                    <textarea id="siteDescription" rows="2" placeholder="Your favorite music streaming 24/7..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Section -->
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-white text-xl font-bold mb-4">
+                                <i class="fas fa-star mr-2"></i>Hero Section
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="heroTitle">Main Title</label>
+                                    <input type="text" id="heroTitle" placeholder="SL HIT">
+                                </div>
+                                <div class="form-group">
+                                    <label for="heroSubtitle">Subtitle</label>
+                                    <input type="text" id="heroSubtitle" placeholder="RADIO">
+                                </div>
+                                <div class="form-group">
+                                    <label for="heroTagline">Tagline</label>
+                                    <input type="text" id="heroTagline" placeholder="Your Ultimate Music Experience">
+                                </div>
+                                <div class="form-group">
+                                    <label for="heroDescription">Description</label>
+                                    <input type="text" id="heroDescription" placeholder="Broadcasting the hottest hits 24/7 across the globe">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-white text-xl font-bold mb-4">
+                                <i class="fas fa-chart-bar mr-2"></i>Statistics
+                            </h3>
+                            <div class="grid md:grid-cols-4 gap-4">
+                                <div class="form-group">
+                                    <label for="statsListeners">Active Listeners</label>
+                                    <input type="text" id="statsListeners" placeholder="50K+">
+                                </div>
+                                <div class="form-group">
+                                    <label for="statsBroadcasting">Broadcasting</label>
+                                    <input type="text" id="statsBroadcasting" placeholder="24/7">
+                                </div>
+                                <div class="form-group">
+                                    <label for="statsCountries">Countries</label>
+                                    <input type="text" id="statsCountries" placeholder="100+">
+                                </div>
+                                <div class="form-group">
+                                    <label for="statsSongs">Songs Played</label>
+                                    <input type="text" id="statsSongs" placeholder="5M+">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About Section -->
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-white text-xl font-bold mb-4">
+                                <i class="fas fa-users mr-2"></i>About Section
+                            </h3>
+                            <div class="grid gap-4">
+                                <div class="form-group">
+                                    <label for="aboutTitle">About Title</label>
+                                    <input type="text" id="aboutTitle" placeholder="About SL Hit Radio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="aboutDescription">About Description</label>
+                                    <textarea id="aboutDescription" rows="2" placeholder="Your ultimate destination for the best music..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="aboutStory">Story Paragraphs (one per line)</label>
+                                    <textarea id="aboutStory" rows="4" placeholder="Founded in 2020, SL Hit Radio has been bringing...&#10;With a team of experienced DJs...&#10;From our state-of-the-art studios..."></textarea>
+                                </div>
+                                <div class="grid md:grid-cols-4 gap-4">
+                                    <div class="form-group">
+                                        <label for="aboutStatsBroadcasting">Broadcasting Stat</label>
+                                        <input type="text" id="aboutStatsBroadcasting" placeholder="24/7">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="aboutStatsListeners">Listeners Stat</label>
+                                        <input type="text" id="aboutStatsListeners" placeholder="50K+">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="aboutStatsYears">Years Stat</label>
+                                        <input type="text" id="aboutStatsYears" placeholder="5+">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="aboutStatsSongs">Songs Stat</label>
+                                        <input type="text" id="aboutStatsSongs" placeholder="100+">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Section -->
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-white text-xl font-bold mb-4">
+                                <i class="fas fa-phone mr-2"></i>Contact Information
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number</label>
+                                    <input type="text" id="contactPhone" placeholder="+94 11 234 5678">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email Address</label>
+                                    <input type="email" id="contactEmail" placeholder="hello@slhitradio.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactAddress">Address</label>
+                                    <input type="text" id="contactAddress" placeholder="Colombo, Sri Lanka">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactHours">Operating Hours</label>
+                                    <input type="text" id="contactHours" placeholder="24/7 Live Broadcasting">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="text-center space-x-4">
+                            <button id="loadHomepageContentBtn" class="btn-secondary">
+                                <i class="fas fa-sync-alt mr-2"></i>Load Current Content
+                            </button>
+                            <button id="saveHomepageContentBtn" class="btn-primary">
+                                <i class="fas fa-save mr-2"></i>Save All Changes
+                            </button>
+                        </div>
+
+                        <div id="homepageMessage"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-nav mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-white/60 text-sm">
+                    <p>&copy; 2025 SL Hit Radio. All rights reserved.</p>
+                    <p class="mt-2">Admin Panel - Authorized Access Only</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+        import { getDatabase, ref, push, onValue, remove, orderByChild, query, get, set } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoRO0KGQ9WEPkqqQ21HKEmNbySxIqssu4",
+            authDomain: "sl-hit-radio-6b2c4.firebaseapp.com",
+            databaseURL: "https://sl-hit-radio-6b2c4-default-rtdb.firebaseio.com/",
+            projectId: "sl-hit-radio-6b2c4",
+            storageBucket: "sl-hit-radio-6b2c4.firebasestorage.app",
+            messagingSenderId: "946618237517",
+            appId: "1:946618237517:web:d4691f14f70fc4d817d204",
+            measurementId: "G-1LG78B19Y9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Admin credentials (in production, use proper authentication)
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'slhitradio2025'
+        };
+
+        // DOM elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminDashboard = document.getElementById('adminDashboard');
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginMessage = document.getElementById('loginMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        const addNewsTabBtn = document.getElementById('addNewsTabBtn');
+        const manageNewsTabBtn = document.getElementById('manageNewsTabBtn');
+        const homepageTabBtn = document.getElementById('homepageTabBtn');
+        const addNewsTab = document.getElementById('addNewsTab');
+        const manageNewsTab = document.getElementById('manageNewsTab');
+        const homepageTab = document.getElementById('homepageTab');
+        
+        const newsForm = document.getElementById('newsForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const newsTableContainer = document.getElementById('newsTableContainer');
+        
+        // Homepage content elements
+        const homepageMessage = document.getElementById('homepageMessage');
+        const loadHomepageContentBtn = document.getElementById('loadHomepageContentBtn');
+        const saveHomepageContentBtn = document.getElementById('saveHomepageContentBtn');
+        
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            if (isLoggedIn) {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+        }
+
+        // Show login screen
+        function showLogin() {
+            loginScreen.classList.add('active');
+            adminDashboard.classList.remove('active');
+            logoutBtn.classList.add('hidden');
+        }
+
+        // Show dashboard
+        function showDashboard() {
+            loginScreen.classList.remove('active');
+            adminDashboard.classList.add('active');
+            logoutBtn.classList.remove('hidden');
+            loadNewsForManagement();
+        }
+
+        // Login functionality
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                showMessage('Login successful!', 'success', 'loginMessage');
+                setTimeout(showDashboard, 1000);
+            } else {
+                showMessage('Invalid credentials', 'error', 'loginMessage');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('adminLoggedIn');
+            showLogin();
+            showMessage('Logged out successfully', 'success', 'loginMessage');
+        });
+
+        // Tab switching
+        addNewsTabBtn.addEventListener('click', () => switchTab('add'));
+        manageNewsTabBtn.addEventListener('click', () => switchTab('manage'));
+        homepageTabBtn.addEventListener('click', () => switchTab('homepage'));
+
+        function switchTab(tab) {
+            // Remove active class from all buttons and tabs
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            
+            if (tab === 'add') {
+                addNewsTabBtn.classList.add('active');
+                addNewsTab.classList.add('active');
+            } else if (tab === 'manage') {
+                manageNewsTabBtn.classList.add('active');
+                manageNewsTab.classList.add('active');
+                loadNewsForManagement();
+            } else if (tab === 'homepage') {
+                homepageTabBtn.classList.add('active');
+                homepageTab.classList.add('active');
+            }
+        }
+
+        // Mobile menu toggle
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // News form submission
+        newsForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Publishing...';
+            
+            const title = document.getElementById('newsTitle').value;
+            const excerpt = document.getElementById('newsExcerpt').value;
+            const content = document.getElementById('newsContent').value;
+            const category = document.getElementById('newsCategory').value;
+            
+            const newsData = {
+                title,
+                excerpt,
+                content,
+                category,
+                date: new Date().toISOString(),
+                timestamp: Date.now()
+            };
+            
+            try {
+                const newsRef = ref(database, 'news');
+                await push(newsRef, newsData);
+                
+                showMessage('Article published successfully!', 'success', 'formMessage');
+                newsForm.reset();
+            } catch (error) {
+                console.error('Error publishing article:', error);
+                showMessage('Error publishing article', 'error', 'formMessage');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Publish Article';
+            }
+        });
+
+        // Load news for management
+        function loadNewsForManagement() {
+            newsTableContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin text-4xl mb-4"></i><p>Loading news articles...</p></div>';
+            
+            const newsRef = ref(database, 'news');
+            const newsQuery = query(newsRef, orderByChild('timestamp'));
+            
+            onValue(newsQuery, (snapshot) => {
+                const newsData = snapshot.val();
+                displayNewsTable(newsData);
+            }, (error) => {
+                console.error('Error loading news:', error);
+                newsTableContainer.innerHTML = '<div class="error-message">Error loading news articles</div>';
+            });
+        }
+
+        // Display news table
+        function displayNewsTable(newsData) {
+            if (!newsData) {
+                newsTableContainer.innerHTML = '<div class="text-center py-8 text-white/60">No news articles found</div>';
+                return;
+            }
+
+            const newsArray = Object.entries(newsData).reverse(); // Show newest first
+            
+            let tableHTML = `
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            newsArray.forEach(([id, article]) => {
+                const date = new Date(article.date).toLocaleDateString();
+                tableHTML += `
+                    <tr>
+                        <td>${article.title}</td>
+                        <td>${article.category}</td>
+                        <td>${date}</td>
+                        <td>
+                            <button onclick="viewArticle('${id}')" class="btn-secondary mr-2">
+                                <i class="fas fa-eye mr-1"></i>View
+                            </button>
+                            <button onclick="deleteArticle('${id}', '${article.title}')" class="btn-danger">
+                                <i class="fas fa-trash mr-1"></i>Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+            newsTableContainer.innerHTML = tableHTML;
+        }
+
+        // View article
+        window.viewArticle = function(articleId) {
+            window.open(`article.html?id=${articleId}`, '_blank');
+        };
+
+        // Delete article
+        window.deleteArticle = async function(articleId, title) {
+            if (confirm(`Are you sure you want to delete "${title}"?`)) {
+                try {
+                    const articleRef = ref(database, `news/${articleId}`);
+                    await remove(articleRef);
+                    showMessage('Article deleted successfully!', 'success', 'formMessage');
+                } catch (error) {
+                    console.error('Error deleting article:', error);
+                    showMessage('Error deleting article', 'error', 'formMessage');
+                }
+            }
+        };
+
+        // Homepage Content Management Functions
+        
+        // Load homepage content for editing
+        async function loadHomepageContentForEditing() {
+            try {
+                const homepageRef = ref(database, 'homepage');
+                const snapshot = await get(homepageRef);
+                const data = snapshot.val();
+                
+                if (data) {
+                    populateHomepageForm(data);
+                    showMessage('Homepage content loaded successfully!', 'success', 'homepageMessage');
+                } else {
+                    // Set default values if no data exists
+                    setDefaultHomepageValues();
+                    showMessage('No existing content found. Default values loaded.', 'success', 'homepageMessage');
+                }
+            } catch (error) {
+                console.error('Error loading homepage content:', error);
+                showMessage('Error loading homepage content', 'error', 'homepageMessage');
+            }
+        }
+
+        // Populate form with homepage data
+        function populateHomepageForm(data) {
+            // Site Information
+            if (data.siteInfo) {
+                document.getElementById('siteName').value = data.siteInfo.name || '';
+                document.getElementById('siteTitle').value = data.siteInfo.title || '';
+                document.getElementById('siteDescription').value = data.siteInfo.description || '';
+            }
+
+            // Hero Section
+            if (data.hero) {
+                document.getElementById('heroTitle').value = data.hero.title || '';
+                document.getElementById('heroSubtitle').value = data.hero.subtitle || '';
+                document.getElementById('heroTagline').value = data.hero.tagline || '';
+                document.getElementById('heroDescription').value = data.hero.description || '';
+            }
+
+            // Stats
+            if (data.stats) {
+                document.getElementById('statsListeners').value = data.stats.listeners || '';
+                document.getElementById('statsBroadcasting').value = data.stats.broadcasting || '';
+                document.getElementById('statsCountries').value = data.stats.countries || '';
+                document.getElementById('statsSongs').value = data.stats.songs || '';
+            }
+
+            // About Section
+            if (data.about) {
+                document.getElementById('aboutTitle').value = data.about.title || '';
+                document.getElementById('aboutDescription').value = data.about.description || '';
+                if (data.about.story && data.about.story.paragraphs) {
+                    document.getElementById('aboutStory').value = data.about.story.paragraphs.join('\n');
+                }
+                if (data.about.stats) {
+                    document.getElementById('aboutStatsBroadcasting').value = data.about.stats.broadcasting?.value || '';
+                    document.getElementById('aboutStatsListeners').value = data.about.stats.listeners?.value || '';
+                    document.getElementById('aboutStatsYears').value = data.about.stats.years?.value || '';
+                    document.getElementById('aboutStatsSongs').value = data.about.stats.songs?.value || '';
+                }
+            }
+
+            // Contact Information
+            if (data.contact && data.contact.info) {
+                document.getElementById('contactPhone').value = data.contact.info.phone || '';
+                document.getElementById('contactEmail').value = data.contact.info.email || '';
+                document.getElementById('contactAddress').value = data.contact.info.address || '';
+                document.getElementById('contactHours').value = data.contact.info.hours || '';
+            }
+        }
+
+        // Set default values
+        function setDefaultHomepageValues() {
+            // Site Information
+            document.getElementById('siteName').value = 'SL Hit Radio';
+            document.getElementById('siteTitle').value = 'SL Hit Radio - Live Music Streaming 24/7';
+            document.getElementById('siteDescription').value = 'Your favorite music streaming 24/7. Listen to the best hits and enjoy our live radio broadcasts.';
+
+            // Hero Section
+            document.getElementById('heroTitle').value = 'SL HIT';
+            document.getElementById('heroSubtitle').value = 'RADIO';
+            document.getElementById('heroTagline').value = 'Your Ultimate Music Experience';
+            document.getElementById('heroDescription').value = 'Broadcasting the hottest hits 24/7 across the globe';
+
+            // Stats
+            document.getElementById('statsListeners').value = '50K+';
+            document.getElementById('statsBroadcasting').value = '24/7';
+            document.getElementById('statsCountries').value = '100+';
+            document.getElementById('statsSongs').value = '5M+';
+
+            // About Section
+            document.getElementById('aboutTitle').value = 'About SL Hit Radio';
+            document.getElementById('aboutDescription').value = 'Your ultimate destination for the best music, entertainment, and live shows. Broadcasting 24/7 with love from our studios.';
+            document.getElementById('aboutStory').value = 'Founded in 2020, SL Hit Radio has been bringing you the best music and entertainment around the clock. Our passion for great music and connecting with our listeners drives everything we do.\n\nWith a team of experienced DJs and music enthusiasts, we curate the perfect mix of current hits, classic favorites, and hidden gems to keep you entertained throughout the day.\n\nFrom our state-of-the-art studios, we broadcast to thousands of listeners worldwide, creating a community united by the love of great music.';
+            
+            // About Stats
+            document.getElementById('aboutStatsBroadcasting').value = '24/7';
+            document.getElementById('aboutStatsListeners').value = '50K+';
+            document.getElementById('aboutStatsYears').value = '5+';
+            document.getElementById('aboutStatsSongs').value = '100+';
+
+            // Contact Information
+            document.getElementById('contactPhone').value = '+94 11 234 5678';
+            document.getElementById('contactEmail').value = 'hello@slhitradio.com';
+            document.getElementById('contactAddress').value = 'Colombo, Sri Lanka';
+            document.getElementById('contactHours').value = '24/7 Live Broadcasting';
+        }
+
+        // Save homepage content
+        async function saveHomepageContent() {
+            try {
+                saveHomepageContentBtn.disabled = true;
+                saveHomepageContentBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+
+                const homepageData = {
+                    siteInfo: {
+                        name: document.getElementById('siteName').value,
+                        title: document.getElementById('siteTitle').value,
+                        description: document.getElementById('siteDescription').value
+                    },
+                    hero: {
+                        title: document.getElementById('heroTitle').value,
+                        subtitle: document.getElementById('heroSubtitle').value,
+                        tagline: document.getElementById('heroTagline').value,
+                        description: document.getElementById('heroDescription').value
+                    },
+                    stats: {
+                        listeners: document.getElementById('statsListeners').value,
+                        broadcasting: document.getElementById('statsBroadcasting').value,
+                        countries: document.getElementById('statsCountries').value,
+                        songs: document.getElementById('statsSongs').value
+                    },
+                    about: {
+                        title: document.getElementById('aboutTitle').value,
+                        description: document.getElementById('aboutDescription').value,
+                        story: {
+                            paragraphs: document.getElementById('aboutStory').value.split('\n').filter(p => p.trim())
+                        },
+                        stats: {
+                            broadcasting: { value: document.getElementById('aboutStatsBroadcasting').value, label: 'Live Broadcasting' },
+                            listeners: { value: document.getElementById('aboutStatsListeners').value, label: 'Monthly Listeners' },
+                            years: { value: document.getElementById('aboutStatsYears').value, label: 'Years Broadcasting' },
+                            songs: { value: document.getElementById('aboutStatsSongs').value, label: 'Songs Daily' }
+                        }
+                    },
+                    contact: {
+                        info: {
+                            phone: document.getElementById('contactPhone').value,
+                            email: document.getElementById('contactEmail').value,
+                            address: document.getElementById('contactAddress').value,
+                            hours: document.getElementById('contactHours').value
+                        }
+                    },
+                    programs: {
+                        list: [
+                            {
+                                name: 'Morning Vibes',
+                                time: '6:00 AM - 10:00 AM',
+                                description: 'Start your day with energizing music and the latest news. Perfect soundtrack for your morning routine.',
+                                dj: 'DJ Mike Johnson',
+                                djTitle: 'Morning Host',
+                                djImage: 'https://via.placeholder.com/40x40/667eea/ffffff?text=DJ',
+                                icon: 'fa-sun',
+                                iconGradient: 'from-orange-400 to-pink-500'
+                            },
+                            {
+                                name: 'Midday Mix',
+                                time: '12:00 PM - 3:00 PM',
+                                description: 'Non-stop hits to keep you going through the afternoon. The perfect work companion.',
+                                dj: 'DJ Sarah Chen',
+                                djTitle: 'Afternoon Host',
+                                djImage: 'https://via.placeholder.com/40x40/764ba2/ffffff?text=DJ',
+                                icon: 'fa-music',
+                                iconGradient: 'from-yellow-400 to-orange-500'
+                            },
+                            {
+                                name: 'Evening Groove',
+                                time: '7:00 PM - 11:00 PM',
+                                description: 'Smooth beats and chill vibes to unwind after a long day. Your evening soundtrack.',
+                                dj: 'DJ Alex Rivera',
+                                djTitle: 'Evening Host',
+                                djImage: 'https://via.placeholder.com/40x40/f093fb/ffffff?text=DJ',
+                                icon: 'fa-moon',
+                                iconGradient: 'from-purple-500 to-pink-500'
+                            }
+                        ]
+                    },
+                    schedule: {
+                        timeSlots: [
+                            { time: '6:00 - 10:00', weekdays: 'Morning Vibes', weekends: 'Weekend Wake-up' },
+                            { time: '10:00 - 12:00', weekdays: 'Top 40 Countdown', weekends: 'Retro Mix' },
+                            { time: '12:00 - 15:00', weekdays: 'Midday Mix', weekends: 'Saturday Specials' },
+                            { time: '15:00 - 19:00', weekdays: 'Afternoon Drive', weekends: 'Sunday Chill' },
+                            { time: '19:00 - 23:00', weekdays: 'Evening Groove', weekends: 'Weekend Party' },
+                            { time: '23:00 - 6:00', weekdays: 'Overnight Hits (Automated)', weekends: 'Overnight Hits (Automated)' }
+                        ]
+                    },
+                    topSongs: {
+                        list: [
+                            { title: 'Blinding Lights', artist: 'The Weeknd', trend: 'same' },
+                            { title: 'Shape of You', artist: 'Ed Sheeran', trend: 'same' },
+                            { title: 'Anti-Hero', artist: 'Taylor Swift', trend: 'up' },
+                            { title: 'As It Was', artist: 'Harry Styles', trend: 'down' },
+                            { title: 'Unholy', artist: 'Sam Smith ft. Kim Petras', trend: 'same' }
+                        ]
+                    },
+                    lastUpdated: new Date().toISOString()
+                };
+
+                const homepageRef = ref(database, 'homepage');
+                await set(homepageRef, homepageData);
+
+                showMessage('Homepage content saved successfully!', 'success', 'homepageMessage');
+            } catch (error) {
+                console.error('Error saving homepage content:', error);
+                showMessage('Error saving homepage content', 'error', 'homepageMessage');
+            } finally {
+                saveHomepageContentBtn.disabled = false;
+                saveHomepageContentBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Save All Changes';
+            }
+        }
+
+        // Event listeners for homepage management
+        loadHomepageContentBtn.addEventListener('click', loadHomepageContentForEditing);
+        saveHomepageContentBtn.addEventListener('click', saveHomepageContent);
+
+        // Show message
+        function showMessage(message, type, containerId) {
+            const className = type === 'success' ? 'success-message' : 'error-message';
+            const icon = type === 'success' ? 'check-circle' : 'exclamation-circle';
+            document.getElementById(containerId).innerHTML = `
+                <div class="${className}">
+                    <i class="fas fa-${icon} mr-2"></i>${message}
+                </div>
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+    </script>
+</body>
+</html>
